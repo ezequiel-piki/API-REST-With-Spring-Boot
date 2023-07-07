@@ -11,5 +11,5 @@ import org.springframework.data.annotation.Id;
  * @author ezequ
  */
 
-public record CrashCard(@Id Long id, Double amount) {
+public record CashCard(@Id Long id, Double amount) {
 }

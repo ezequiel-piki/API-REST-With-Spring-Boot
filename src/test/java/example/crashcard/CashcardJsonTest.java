@@ -4,20 +4,18 @@
  */
 package example.crashcard;
 
-import com.jayway.jsonpath.internal.Path;
 import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.util.ResourceUtils;
 
 
 @JsonTest
-public class CrashcardJsonTest {
+public class CashcardJsonTest {
          @Autowired
-    private JacksonTester<CrashCard> json;
+    private JacksonTester<CashCard> json;
     @Test
         public void myFirstTest(){
         assertThat(42).isEqualTo(42);
@@ -27,7 +25,7 @@ public class CrashcardJsonTest {
 
     @Test
     public void crashCardSerializationTest() throws IOException {
-        CrashCard cashCard = new CrashCard(99L, 123.45);
+        CashCard cashCard = new CashCard(99L, 123.45);
         assertThat(json.write(cashCard)).isStrictlyEqualToJson("expected.json");
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.id");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.id")
@@ -46,7 +44,7 @@ public void crashCardDeserializationTest() throws IOException {
            }
            """;
    assertThat(json.parse(expected))
-           .isEqualTo(new CrashCard(1000L, 123.45));
+           .isEqualTo(new CashCard(1000L, 123.45));
    assertThat(json.parseObject(expected).id()).isEqualTo(1000);
    assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
 }

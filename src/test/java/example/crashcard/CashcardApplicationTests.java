@@ -4,7 +4,6 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import java.net.URI;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.stream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CrashcardApplicationTests {
+class CashcardApplicationTests {
 
     @Autowired
     TestRestTemplate restTemplate;
@@ -43,10 +42,12 @@ class CrashcardApplicationTests {
         @Test
         public void shouldCreateANewCashCard(){
         
-            CrashCard newCashCard = new CrashCard(null, 250.00 );
+            CashCard newCashCard = new CashCard(null, 250.00 );
             ResponseEntity<Void> createResponse = restTemplate.postForEntity("/cashcards", newCashCard, Void.class);
             assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-            
+
+
+
             URI locationOfNewCashCard = createResponse.getHeaders().getLocation();
             ResponseEntity<String> getResponse = restTemplate.getForEntity(locationOfNewCashCard,String.class);
             assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
