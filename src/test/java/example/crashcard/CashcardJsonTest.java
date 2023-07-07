@@ -26,7 +26,7 @@ public class CashcardJsonTest {
     @Test
     public void crashCardSerializationTest() throws IOException {
         CashCard cashCard = new CashCard(99L, 123.45);
-        assertThat(json.write(cashCard)).isStrictlyEqualToJson("expected.json");
+        assertThat(json.write(cashCard)).isStrictlyEqualToJson("single.json");
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.id");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.id")
                 .isEqualTo(99);
