@@ -5,6 +5,7 @@
 package example.crashcard;
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +47,10 @@ public class CashCardController {
                 .buildAndExpand(savedCashCard.id())
                 .toUri();
         return ResponseEntity.created(locationOfNewCashCard).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Iterable<CashCard>> findAll(){
+        return ResponseEntity.ok(cashCardRepository.findAll());
     }
 }

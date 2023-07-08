@@ -59,6 +59,7 @@ class CashcardApplicationTests {
         @Test
         public void shouldReturnAllCashCardsWhenListIsRequested(){
             ResponseEntity<String> response = restTemplate.getForEntity("/cashcards",String.class);
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         }
 	@Test
 	void contextLoads() {
