@@ -20,17 +20,13 @@ import org.springframework.boot.test.json.JacksonTester;
 public class CashcardJsonTest {
     @Autowired
     private JacksonTester<CashCard> json;
-
     @Autowired
     private JacksonTester<CashCard[]>jsonList;
-
     private CashCard[] cashCards;
-
     @Test
         public void myFirstTest(){
         assertThat(42).isEqualTo(42);
         }
-
     @BeforeEach
     void setUp(){
         cashCards = Arrays.array(
@@ -38,7 +34,6 @@ public class CashcardJsonTest {
                 new CashCard(100L, 1.00),
                 new CashCard(101L, 150.00));
     }
-
     @Test
     public void cashCardListSerializationTest() throws IOException{
      assertThat(jsonList.write(cashCards)).isStrictlyEqualToJson("list.json");
@@ -54,9 +49,8 @@ public class CashcardJsonTest {
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.amount")
              .isEqualTo(123.45);
     }
-    
     @Test
-public void crashCardDeserializationTest() throws IOException {
+    public void crashCardDeserializationTest() throws IOException {
    String expected = """
            {
                "id":1000,
@@ -68,4 +62,15 @@ public void crashCardDeserializationTest() throws IOException {
    assertThat(json.parseObject(expected).id()).isEqualTo(1000);
    assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
 }
+    @Test
+    public void cashCardListDeserializationTest() throws  IOException{
+        String expected = """
+                [
+                {"id":99,"amount":123.45},
+                {"id":100,"amount":100.00},
+                {"id":101,"amount":150.00}
+                ]
+                """;
+        assertThat(jsonList.parse(expected)).isEqualTo(cashCards);
+    }
 }
