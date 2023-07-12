@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package example.crashcard;
 
 import java.io.IOException;
@@ -35,8 +31,8 @@ public class CashcardJsonTest {
                 new CashCard(101L, 150.00));
     }
     @Test
-    public void cashCardListSerializationTest() throws IOException{
-     assertThat(jsonList.write(cashCards)).isStrictlyEqualToJson("list.json");
+    public void cashCardListSerializationTest() throws IOException {
+        assertThat(jsonList.write(cashCards)).isStrictlyEqualToJson("list.json");
     }
     @Test
     public void crashCardSerializationTest() throws IOException {
@@ -63,14 +59,15 @@ public class CashcardJsonTest {
    assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
 }
     @Test
-    public void cashCardListDeserializationTest() throws  IOException{
-        String expected = """
-                [
-                {"id":99,"amount":123.45},
-                {"id":100,"amount":1.00},
-                {"id":101,"amount":150.00}
-                ]
-                """;
+    public void cashCardListDeserializationTest() throws IOException {
+        String expected="""
+         [
+            { "id": 99, "amount": 123.45 },
+            { "id": 100, "amount": 1.00 },
+            { "id": 101, "amount": 150.00 }
+         ]
+         """;
         assertThat(jsonList.parse(expected)).isEqualTo(cashCards);
     }
-}
+    }
+

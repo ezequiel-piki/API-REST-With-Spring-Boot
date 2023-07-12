@@ -6,10 +6,7 @@ package example.crashcard;
 
 import org.springframework.data.annotation.Id;
 
-/**
- *
- * @author ezequ
- */
+
 
 public record CashCard(@Id Long id, Double amount) {
 }

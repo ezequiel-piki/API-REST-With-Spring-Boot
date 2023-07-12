@@ -6,10 +6,7 @@ package example.crashcard;
 
 import org.springframework.data.repository.CrudRepository;
 
-/**
- *
- * @author ezequ
- */
+
 public interface CrashCardRepository extends CrudRepository<CashCard,Long>{
     
 }

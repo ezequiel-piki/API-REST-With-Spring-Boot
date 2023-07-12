@@ -49,7 +49,7 @@ public class CashCardController {
         return ResponseEntity.created(locationOfNewCashCard).build();
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Iterable<CashCard>> findAll(){
         return ResponseEntity.ok(cashCardRepository.findAll());
     }
